@@ -33,7 +33,19 @@ var test_1 = L.marker([56.80870, 38.412091]).bindPopup('Тестовая точ�
     test_3    = L.marker([58.80870, 40.412091]).bindPopup('Тестовая точка 3'),
     test_4    = L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4');
 var test_points = L.layerGroup([test_1, test_2, test_3, test_4]);
-
+var map = L.map('map', {
+    center: [55.80870, 37.412091],
+    zoom: 9,
+    layers: [mapboxTiles, openstreetmap]
+});
+var baseMaps = {
+    "MapBox": mapboxTiles,
+    "Openstreetmap": openstreetmap
+};
+var overlayMaps = {
+    "Test points": test_points
+};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 var circle = L.circle([56.80870, 38.412091, -0.11], 500, {
     color: 'blue',
     fillColor: '#f03',
@@ -49,19 +61,6 @@ function onMapClick(e) {
         .openOn(map);
 }
 map.on('click', onMapClick);
-var map = L.map('map', {
-    center: [55.80870, 37.412091],
-    zoom: 9,
-    layers: [mapboxTiles, openstreetmap]
-});
-var baseMaps = {
-    "MapBox": mapboxTiles,
-    "Openstreetmap": openstreetmap
-};
-var overlayMaps = {
-    "Test points": test_points
-};
-L.control.layers(baseMaps, overlayMaps).addTo(map);
 </script>
 </body>
 </html>
