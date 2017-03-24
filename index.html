@@ -22,6 +22,7 @@
 <div id="map"></div>
 
 <script>
+	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
   var cities = new L.LayerGroup();
 
 	L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities),
@@ -30,8 +31,10 @@
 	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
 
 
-	var grayscale   = L.tileLayer(mbUrl, {id: 'mapbox.light', attribution: mbAttr}),
-		streets  = L.tileLayer(mbUrl, {id: 'mapbox.streets',   attribution: mbAttr});
+	var grayscale   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+                  	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+		  streets  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
 
 	var map = L.map('map', {
 		center: [39.73, -104.99],
