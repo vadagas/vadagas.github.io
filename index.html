@@ -30,7 +30,6 @@
 	L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
 	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
 
-
 	var grayscale   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                   	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
 		  streets  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
