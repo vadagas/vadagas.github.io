@@ -1,7 +1,7 @@
 <html>
 <head>
   <meta charset=utf-8 />
-  <title>Esri Leaflet Quickstart</title>
+  <title>Vadagas test page</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
   <!-- Load Leaflet from CDN-->
@@ -25,23 +25,21 @@
 L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
 // Replace 'mapbox.streets' with your map id.
 var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-    attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
-
-var map = L.map('map')
-    .addLayer(mapboxTiles)
-    .setView([55.80870, 37.412091], 9);
-
-//var marker = L.marker([56.80870, 38.412091, -0.09]).addTo(map);
-var marker = L.marker([56.80870, 38.412091, -0.09]).addTo(map);
-marker.bindPopup("<b>Тест</b><br>Тестовая точка ").openPopup();
+                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+    openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
+var test_1 = L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1'),
+    test_2    = L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2'),
+    test_3    = L.marker([58.80870, 40.412091]).bindPopup('Тестовая точка 3'),
+    test_4    = L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4');
+var test_points = L.layerGroup([test_1, test_2, test_3, test_4]);
 
 var circle = L.circle([56.80870, 38.412091, -0.11], 500, {
     color: 'blue',
     fillColor: '#f03',
     fillOpacity: 0.5
 }).addTo(map);
-circle.bindPopup("А это какая-то буферная зона вокруг тестовой точки");
+circle.bindPopup("А это какая-то буферная зона вокруг тестовой точки 1");
 
 var popup = L.popup();
 function onMapClick(e) {
@@ -50,8 +48,20 @@ function onMapClick(e) {
         .setContent("Координаты этого ебучего места  " + e.latlng.toString())
         .openOn(map);
 }
-
 map.on('click', onMapClick);
+var map = L.map('map', {
+    center: [55.80870, 37.412091],
+    zoom: 9,
+    layers: [mapboxTiles, openstreetmap]
+});
+var baseMaps = {
+    "MapBox": mapboxTiles,
+    "Openstreetmap": openstreetmap
+};
+var overlayMaps = {
+    "Test points": test_points
+};
+L.control.layers(baseMaps, overlayMaps).addTo(map);
 </script>
 </body>
 </html>
