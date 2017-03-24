@@ -24,34 +24,40 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
 // Replace 'mapbox.streets' with your map id.
-var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+  var test_points = L.layerGroup();
+  
+      L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
+      L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
+      L.marker([58.80870, 40.412091]).bindPopup('Тестовая точка 3').addTo(test_points),
+      L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
+  var mapboxTiles = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                   attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
-    openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      openstreetmap = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                     attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
-var test_1 = L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
-    test_2    = L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
-    test_3    = L.marker([58.80870, 40.412091]).bindPopup('Тестовая точка 3').addTo(test_points),
-    test_4    = L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
-var test_points = L.layerGroup([test_1, test_2, test_3, test_4]);
-var map = L.map('map', {
+  
+  var map = L.map('map', {
     center: [55.80870, 37.412091],
     zoom: 9,
     layers: [mapboxTiles, openstreetmap]
-});
-var baseMaps = {
+  });
+  
+  var baseMaps = {
     "MapBox": mapboxTiles,
     "Openstreetmap": openstreetmap
-};
-var overlayMaps = {
+  };
+  
+  var overlayMaps = {
     "Test points": test_points
-};
-L.control.layers(baseMaps, overlayMaps).addTo(map);
-var circle = L.circle([56.80870, 38.412091, -0.11], 500, {
+  };
+  
+  L.control.layers(baseMaps, overlayMaps).addTo(map);
+  
+  var circle = L.circle([56.80870, 38.412091, -0.11], 500, {
     color: 'blue',
     fillColor: '#f03',
     fillOpacity: 0.5
-}).addTo(map);
-circle.bindPopup("А это какая-то буферная зона вокруг тестовой точки 1");
+  }).addTo(map);
+  circle.bindPopup("А это какая-то буферная зона вокруг тестовой точки 1");
 
 </script>
 </body>
