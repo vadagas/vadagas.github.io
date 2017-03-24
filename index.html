@@ -4,11 +4,11 @@
   <title>Vadagas test page</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 
-  <!-- Load Leaflet from CDN-->
+  <!-- Load Leaflet-->
   <link rel="stylesheet" href="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.css" />
   <script src="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.js"></script>
 
-  <!-- Load Esri Leaflet from CDN -->
+  <!-- Load Mapbox -->
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
   <style>
@@ -22,31 +22,31 @@
 
 <script>
 	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
-  var cities = new L.LayerGroup();
+  var test_points = new L.LayerGroup();
 
-	L.marker([39.61, -105.02]).bindPopup('This is Littleton, CO.').addTo(cities),
-	L.marker([39.74, -104.99]).bindPopup('This is Denver, CO.').addTo(cities),
-	L.marker([39.73, -104.8]).bindPopup('This is Aurora, CO.').addTo(cities),
-	L.marker([39.77, -105.23]).bindPopup('This is Golden, CO.').addTo(cities);
+	L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
+	L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
+	L.marker([58.80870, 40.41209159.808707]).bindPopup('Тестовая точка 3').addTo(test_points),
+	L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
 
-	var grayscale   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-                  	attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
-		  streets  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
+	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
+			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                 		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
 
 	var map = L.map('map', {
 		center: [39.73, -104.99],
 		zoom: 10,
-		layers: [grayscale, cities]
+		layers: [mapbox, test_points]
 	});
 
 	var baseLayers = {
-		"Grayscale": grayscale,
-		"Streets": streets
+		"Grayscale": mapbox,
+		"Streets": openstreetmap
 	};
 
 	var overlays = {
-		"Cities": cities
+		"Тестовые точки": test_points
 	};
 
 	L.control.layers(baseLayers, overlays).addTo(map);
