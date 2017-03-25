@@ -3,10 +3,11 @@
   <meta charset=utf-8 />
   <title>Vadagas test page</title>
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-
+	
   <!-- Load Leaflet-->
   <link rel="stylesheet" href="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.css" />
   <script src="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.js"></script>
+	<script src="jquery-2.1.1.min.js"></script>
 
   <!-- Load Mapbox -->
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
@@ -50,6 +51,21 @@
 	};
 
 	L.control.layers(baseLayers, overlays).addTo(map);
+	
+	// load GeoJSON from an external file
+	$.getJSON("st.geojson",function(data){
+  var ratIcon = L.icon({
+    iconUrl: 'rat.png',
+    iconSize: [60,50]
+  });
+		
+	// add GeoJSON layer to the map once the file is loaded
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+	  return L.marker(latlng,{icon: ratIcon});
+    }
+  }).addTo(map);
+});
 </script>
 </body>
 </html>
