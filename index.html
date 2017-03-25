@@ -31,12 +31,12 @@
 
 	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
-	openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                  		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
 
 	var map = L.map('map', {
 		center: [55.80870, 37.412091],
-		zoom: 15,
+		zoom: 5,
 		layers: [mapbox, test_points]
 	});
 
