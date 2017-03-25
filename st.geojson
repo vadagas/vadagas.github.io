@@ -1,6 +1,5 @@
 {
 "type": "FeatureCollection",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
 "features": [
 { "type": "Feature", "properties": { "OBJECTID": 1, "sea": "Baltic", "section_": "StPeter-TP", "station": 5, "xdec": 59.888, "ydec": 30.218 }, "geometry": { "type": "Point", "coordinates": [ 30.218, 59.888 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 2, "sea": "Baltic", "section_": "Neva Bay", "station": 1, "xdec": 59.978, "ydec": 30.217 }, "geometry": { "type": "Point", "coordinates": [ 30.217, 59.978 ] } },
