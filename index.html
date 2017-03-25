@@ -32,7 +32,7 @@
 
 	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
-			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                  		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
 
 	var map = L.map('map', {
@@ -62,8 +62,10 @@
 	// add GeoJSON layer to the map once the file is loaded
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
-	  return L.marker(latlng,{icon: ratIcon});
-    }
+	  	var marker = L.marker(latlng,{icon: ratIcon});
+      marker.bindPopup(feature.properties.Location + '<br/>' + feature.properties.sea);
+      return marker;
+			}
   }).addTo(map);
 });
 </script>
