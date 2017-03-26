@@ -6,8 +6,10 @@
 	
   <!-- Load Leaflet-->
   <link rel="stylesheet" href="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.css" />
+	<link rel="stylesheet" href="MarkerCluster.css"/>
   <script src="https://github.com/vadagas/vadagas.github.io/blob/master/lib/leaflet.js"></script>
 	<script src="jquery-2.1.1.min.js"></script>
+	<script src="leaflet.markercluster.js"></script>
   <!-- Load Mapbox -->
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
@@ -59,14 +61,16 @@
   });
 		
 	// add GeoJSON layer to the map once the file is loaded
-  L.geoJson(data,{
+  var station = L.geoJson(data,{
     pointToLayer: function(feature,latlng){
 	  	var marker = L.marker(latlng,{icon: ratIcon});
       marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
       return marker;
 			}
-  }).addTo(map);
 });
+	var clusters = L.markerClusterGroup();
+	clusters.addLayer(station);
+	map.addLayer(clusters);
 </script>
 </body>
 </html>
