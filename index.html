@@ -7,6 +7,7 @@
   <!-- Load Leaflet-->
   <link rel="stylesheet" href="lib/leaflet.css" />
   <script src="lib/leaflet.js"></script>
+	<script type="text/javascript" src="lib/leaflet.ajax.js"></script>
 	<script src="jquery-2.1.1.min.js"></script>
   <!-- Load Mapbox -->
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
@@ -36,30 +37,31 @@
 		zoom: 5,
 		layers: [mapbox, test_points]
 	});
+	var st = new L.GeoJSON.AJAX("st.geojson", {onEachFeature: function (feature, layer) {     
+      if (feature.properties) {
+        var info = function(k){
+            var str = k + ": " + feature.properties[k];
+            return str;
+        }
+        layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
+				var ratIcon = L.icon({
+    				iconUrl: 'circle.png',
+    				iconSize: [16,16]
+  				});
+				var marker = L.marker(latlng,{icon: ratIcon});
+      }
+    }});
+	
 	var baseLayers = {
 		"Mapbox": mapbox,
 		"Openstreetmap": openstreetmap
 	};
 	var overlays = {
 		"Тестовые точки": test_points
+		"st": st
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
-	
-	// load GeoJSON from an external file
-	$.getJSON("st.geojson",function(data){
-  var ratIcon = L.icon({
-    iconUrl: 'circle.png',
-    iconSize: [16,16]
-  });
-		
-	// add GeoJSON layer to the map once the file is loaded
-  L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-	  	var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
-      return marker;
-			}
-  }).addTo(map);
+
 });
 </script>
 </body>
