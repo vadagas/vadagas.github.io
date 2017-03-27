@@ -23,6 +23,11 @@
 
 <script>
 	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
+  var test_points = new L.LayerGroup();
+	L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
+	L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
+	L.marker([58.80870, 40.41209159]).bindPopup('Тестовая точка 3').addTo(test_points),
+	L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
 	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
 			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -30,30 +35,32 @@
 	var map = L.map('map', {
 		center: [55.80870, 37.412091],
 		zoom: 5,
-		layers: [mapbox, st]
+		layers: [mapbox, test_points]
 	});
-	var st = new L.GeoJSON.AJAX("st.geojson", {onEachFeature: function (feature, layer) {     
-      if (feature.properties) {
-        var info = function(k){
-            var str = k + ": " + feature.properties[k];
-            return str;
-        }
-        layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
-				var ratIcon = L.icon({
-    				iconUrl: 'circle.png',
-    				iconSize: [16,16]
-  				});
-				var marker = L.marker(latlng,{icon: ratIcon});
-      }
-    }});
 	var baseLayers = {
 		"Mapbox": mapbox,
 		"Openstreetmap": openstreetmap
 	};
 	var overlays = {
-		"st": st
+		"Тестовые точки": test_points
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
+	
+	// load GeoJSON from an external file
+	$.getJSON("st.geojson",function(data){
+  var ratIcon = L.icon({
+    iconUrl: 'circle.png',
+    iconSize: [16,16]
+  });
+		
+	// add GeoJSON layer to the map once the file is loaded
+  L.geoJson(data,{
+    pointToLayer: function(feature,latlng){
+	  	var marker = L.marker(latlng,{icon: ratIcon});
+      marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
+      return marker;
+			}
+  }).addTo(map);
 });
 </script>
 </body>
