@@ -53,13 +53,19 @@
   });
 		
 	// add GeoJSON layer to the map once the file is loaded
-  L.geoJson(data,{
+L.geoJson(data,{
     pointToLayer: function(feature,latlng){
 	  	var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
+		if (feature.properties) {
+		  var info = function(k){
+				var str = k + ": " + feature.properties[k];
+				return str;
+		}
+      marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
+	  	marker.setStyle({ color: '#555', clickable: true, weight: 4, opacity: 0.8});
       return marker;
 			}
-  }).addTo(map);
+  }}).addTo(map);
 });
 </script>
 </body>
