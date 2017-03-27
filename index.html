@@ -30,7 +30,7 @@
 	var map = L.map('map', {
 		center: [55.80870, 37.412091],
 		zoom: 5,
-		layers: [mapbox, test_points]
+		layers: [mapbox, st]
 	});
 	var st = new L.GeoJSON.AJAX("st.geojson", {onEachFeature: function (feature, layer) {     
       if (feature.properties) {
