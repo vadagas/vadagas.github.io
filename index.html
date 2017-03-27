@@ -23,11 +23,6 @@
 
 <script>
 	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
-  var test_points = new L.LayerGroup();
-	L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
-	L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
-	L.marker([58.80870, 40.41209159]).bindPopup('Тестовая точка 3').addTo(test_points),
-	L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
 	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
 			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -51,17 +46,14 @@
 				var marker = L.marker(latlng,{icon: ratIcon});
       }
     }});
-	
 	var baseLayers = {
 		"Mapbox": mapbox,
 		"Openstreetmap": openstreetmap
 	};
 	var overlays = {
-		"Тестовые точки": test_points
 		"st": st
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
-
 });
 </script>
 </body>
