@@ -59,9 +59,6 @@
 		var info = function(k){
 				var str = k + ": " + feature.properties[k];
 				return str;}
-		var clusters = L.markerClusterGroup();
-		clusters.addLayer(rodents);
-		map.addLayer(clusters);
       marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
       return marker;
 			}
