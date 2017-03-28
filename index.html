@@ -57,7 +57,13 @@
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
 	  	var marker = L.marker(latlng,{icon: ratIcon});
-      marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
+		var info = function(k){
+				var str = k + ": " + feature.properties[k];
+				return str;}
+		var clusters = L.markerClusterGroup();
+		clusters.addLayer(rodents);
+		map.addLayer(clusters);
+      marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
       return marker;
 			}
   }).addTo(map);
