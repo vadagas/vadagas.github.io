@@ -49,11 +49,11 @@
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
 	$.getJSON("st.geojson",function(data){
+	var clusters = L.markerClusterGroup();
   var ratIcon = L.icon({
     iconUrl: 'circle.png',
     iconSize: [16,16]
   });
-  var clusters = L.markerClusterGroup();
 	// add GeoJSON layer to the map once the file is loaded
   var incidents = L.geoJson(data,{
     pointToLayer: function(feature,latlng){
