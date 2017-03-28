@@ -25,9 +25,11 @@
 var map = new L.Map("map", {center: [55.80870, 37.412091], zoom: 5, attributionControl:false});
 
 //add mapbox map tiles
-var mapTile = new L.TileLayer("https://api.mapbox.com/styles/v1/ddcreative/ciu8ip2c0001w2jpcueu3fffk/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGRjcmVhdGl2ZSIsImEiOiJjaXU4aWp6dWIwMDgyMnNwZHN0eTN3bGtzIn0.JSbKaBx8Pu9Xtf4YxhT-sQ");
+var mapbox = new L.TileLayer("https://api.mapbox.com/styles/v1/ddcreative/ciu8ip2c0001w2jpcueu3fffk/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGRjcmVhdGl2ZSIsImEiOiJjaXU4aWp6dWIwMDgyMnNwZHN0eTN3bGtzIn0.JSbKaBx8Pu9Xtf4YxhT-sQ");
 mapTile.addTo(map);
-
+//add osm map tiles
+var osm = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+mapTile.addTo(map);
 //create marker style
 var defaultMarker = L.icon({
     iconUrl: 'circle.png',
@@ -68,10 +70,10 @@ $.getJSON("st.geojson", function (data) {
 
 var baseLayers = {
 		"Mapbox": mapbox,
-		"Openstreetmap": openstreetmap};
+		"Openstreetmap": osm};
 	  
 var overlays = {
-		"Тестовые точки": test_points};
+		"Тестовые точки": locationsLayer};
 L.control.layers(baseLayers, overlays).addTo(map);	  
 	  
 });
