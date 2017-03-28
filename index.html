@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
   <title>Marker Cluster Webmap</title>
@@ -18,7 +17,7 @@
   <script src="https://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>    
   <script>
   // ADD YOUR BASE TILES
-  var baseLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  var baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                  		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
   // DEFINE THE CLUSTER LAYER
   var markers = L.markerClusterGroup();
