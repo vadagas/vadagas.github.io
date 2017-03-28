@@ -6,12 +6,9 @@
 	
   <!-- Load Leaflet-->
   <link rel="stylesheet" href="lib/leaflet.css" />
-  <link rel="stylesheet" href="lib/MarkerCluster.css"/>
-
   <script src="lib/leaflet.js"></script>
-  <script src="lib/jquery-2.1.1.min.js"></script>
-  <script src="lib/MarkerCluster.js"></script>
-
+	<script type="text/javascript" src="lib/leaflet.ajax.js"></script>
+	<script src="jquery-2.1.1.min.js"></script>
   <!-- Load Mapbox -->
   <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
   <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
@@ -60,10 +57,7 @@
   L.geoJson(data,{
     pointToLayer: function(feature,latlng){
 	  	var marker = L.marker(latlng,{icon: ratIcon});
-		var info = function(k){
-				var str = k + ": " + feature.properties[k];
-				return str;}
-      marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
+      marker.bindPopup(feature.properties.sea + '<br/>' + feature.properties.section_+ '<br/>' + feature.properties.station);
       return marker;
 			}
   }).addTo(map);
