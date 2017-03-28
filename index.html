@@ -45,15 +45,16 @@
 	};
 	L.control.layers(baseLayers, overlays).addTo(map);
 	
-	// load GeoJSON from an external file
 	$.getJSON("st.geojson",function(data){
   var ratIcon = L.icon({
     iconUrl: 'circle.png',
     iconSize: [16,16]
   });
+  var clusters = L.markerClusterGroup();
+  
 		
 	// add GeoJSON layer to the map once the file is loaded
-  L.geoJson(data,{
+  var incidents = L.geoJson(data,{
     pointToLayer: function(feature,latlng){
 	  	var marker = L.marker(latlng,{icon: ratIcon});
 		var info = function(k){
@@ -61,8 +62,12 @@
 				return str;}
       marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
       return marker;
-			}
-  }).addTo(map);
+    },
+    onEachFeature: function (feature, layer) {
+      layer.addTo(clusters);
+    }
+  });
+  map.addLayer(clusters);
 });
 </script>
 </body>
