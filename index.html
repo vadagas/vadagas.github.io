@@ -1,50 +1,51 @@
 <html>
 <head>
-  <title>Marker Cluster Webmap</title>
-  <meta charset="utf-8" />
-  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-  <script src="/lib/leaflet.markercluster-src.js"></script>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html, body, #map {
+      height: 100%;
+    }
+
+  </style>
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-<style>
-    body { margin:0; padding:0; }
-    #map { position: absolute; top:0; bottom:0; right:0; left:0; }
-  </style>
-</head>
 <body>
-
-<div id="map"></div>
-  <script src="/lib/leaflet.js"></script>    
+  <div id="map"></div>
   <script>
   // ADD YOUR BASE TILES
-  var baseLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                 		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
+  var baseLayer = L.tileLayer('http://a.tiles.mapbox.com/v3/landplanner.map-4y9ngu48/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  });
   // DEFINE THE CLUSTER LAYER
   var markers = L.markerClusterGroup();
 
   // CALL THE GEOJSON HERE
-  $.getJSON("st.geojson", function(data) {
-	var ratIcon = L.icon({
-    iconUrl: 'circle.png',
-    iconSize: [16,16]
-	});
+  $.getJSON("saplaces.geojson", function(data) {
     var geojson = L.geoJson(data, {
       onEachFeature: function (feature, layer) {
         // USE A CUSTOM MARKER
-        layer.setIcon(ratIcon);
+        layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
 
         // ADD A POPUP WITH A CHART
-        layer.bindPopup("<h1>" + feature.properties.NAME);
+        layer.bindPopup("<h1>" + feature.properties.NAME + "</h1><h2><small>Population Change & Projection (in thousands)</small></h2><img width='265px' src='http://chart.googleapis.com/chart?chf=bg,s,67676700&chxl=0:|1950|1985|2020&chxp=0,10,50,90&chxr=0,0,105&chxs=0,676767,10.5,0,l,676767&chxt=x,y&chs=260x100&cht=ls&chco=0000FF&chds=a&chd=t:" + feature.properties.POP1950 + "," + feature.properties.POP1955 + "," + feature.properties.POP1960 + "," + feature.properties.POP1965 + "," + feature.properties.POP1970 + "," + feature.properties.POP1975 + "," + feature.properties.POP1980 + "," + feature.properties.POP1985 + "," + feature.properties.POP1990 + "," + feature.properties.POP1995 + "," + feature.properties.POP2000 + "," + feature.properties.POP2005 + "," + feature.properties.POP2010 + "," + feature.properties.POP2015 + "," + feature.properties.POP2020 +  "&chdlp=b&chg=-1,0&chls=3&chma=5,5,5,5|5'/>");
 
       }
     });
+    markers.addLayer(geojson);
 
     // CONSTRUCT THE MAP
     var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
     baseLayer.addTo(map);
     markers.addTo(map);
- });
+  });
   </script>
-First webmap with many points in Berlin.
- </body>
+</body>
 </html>
