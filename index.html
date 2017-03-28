@@ -58,7 +58,7 @@ $.getJSON("st.geojson", function (data) {
   });
 
   //create cluster group
-  var locations = new L.markerClusterGroup();
+  var locations = new L.markerClusterGroup({showCoverageOnHover: false,});
   //add geojson points to group
   locations.addLayer(locationsLayer);
 
