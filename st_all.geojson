@@ -127,6 +127,5 @@
 { "type": "Feature", "properties": { "OBJECTID": 123, "sea": "Avach", "section_": "Авачинская губа, центр", "station": 2, "xdec": 52.9833, "ydec": 158.5667 }, "geometry": { "type": "Point", "coordinates": [ 158.56670000000008, 52.983300000000042 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 124, "sea": "Avach", "section_": "Авачинская губа, выход ", "station": 43, "xdec": 52.95, "ydec": 158.6167 }, "geometry": { "type": "Point", "coordinates": [ 158.61670000000004, 52.950000000000045 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 125, "sea": "Avach", "section_": "Раковая бухта", "station": 50, "xdec": 52.9667, "ydec": 158.6667 }, "geometry": { "type": "Point", "coordinates": [ 158.66670000000011, 52.96670000000006 ] } },
-{ "type": "Feature", "properties": { "OBJECTID": 126, "sea": null, "section_": null, "station": null, "xdec": null, "ydec": null }, "geometry": { "type": "Point", "coordinates": [ 18446743673.709553, 18446743673.709553 ] } }
 ]
 }
