@@ -71,8 +71,10 @@ $.getJSON("st.geojson", function (data) {
 var baseLayers = {
 		"Mapbox": mapbox,
 		"Openstreetmap": osm};
-	  
-L.control.layers(baseLayers).addTo(map);	  
+var overlays = {
+		"Тестовые точки": locationsLayer
+	};	  
+L.control.layers(baseLayers,overlays).addTo(map);	  
 	  
 });
   </script>
