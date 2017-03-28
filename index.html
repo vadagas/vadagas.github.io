@@ -21,33 +21,57 @@
 <body>
   <div id="map"></div>
   <script>
-  // ADD YOUR BASE TILES
-	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
+(function($) {
 
-  var baseLayer = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'});
-  // DEFINE THE CLUSTER LAYER
-  var markers = L.markerClusterGroup();
+//create map
+var map = new L.Map("map", {center: [40.7,-74.3], zoom: 11, attributionControl:false});
 
-  // CALL THE GEOJSON HERE
-  $.getJSON("st.geojson", function(data) {
-    var geojson = L.geoJson(data, {
-      onEachFeature: function (feature, layer) {
-        // USE A CUSTOM MARKER
-        layer.setIcon(L.mapbox.marker.icon({'marker-symbol': 'circle-stroked', 'marker-color': '59245f'}));
+//add mapbox map tiles
+var mapTile = new L.TileLayer("https://api.mapbox.com/styles/v1/ddcreative/ciu8ip2c0001w2jpcueu3fffk/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGRjcmVhdGl2ZSIsImEiOiJjaXU4aWp6dWIwMDgyMnNwZHN0eTN3bGtzIn0.JSbKaBx8Pu9Xtf4YxhT-sQ");
+mapTile.addTo(map);
 
-        // ADD A POPUP WITH A CHART
-        layer.bindPopup("<h1>" + feature.properties.NAME + "</h1><h2><small>Population Change & Projection (in thousands)</small></h2><img width='265px' src='http://chart.googleapis.com/chart?chf=bg,s,67676700&chxl=0:|1950|1985|2020&chxp=0,10,50,90&chxr=0,0,105&chxs=0,676767,10.5,0,l,676767&chxt=x,y&chs=260x100&cht=ls&chco=0000FF&chds=a&chd=t:" + feature.properties.POP1950 + "," + feature.properties.POP1955 + "," + feature.properties.POP1960 + "," + feature.properties.POP1965 + "," + feature.properties.POP1970 + "," + feature.properties.POP1975 + "," + feature.properties.POP1980 + "," + feature.properties.POP1985 + "," + feature.properties.POP1990 + "," + feature.properties.POP1995 + "," + feature.properties.POP2000 + "," + feature.properties.POP2005 + "," + feature.properties.POP2010 + "," + feature.properties.POP2015 + "," + feature.properties.POP2020 +  "&chdlp=b&chg=-1,0&chls=3&chma=5,5,5,5|5'/>");
+//create marker style
+var defaultMarker = L.icon({
+  iconUrl: "_img/ui/marker-icon-2x.png",
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  shadowUrl: '_img/ui/marker-shadow.png',
+  shadowSize: [41, 41],
+  shadowAnchor: [13, 41],
+  popupAnchor:  [0, -28]
+});
 
-      }
-    });
-    markers.addLayer(geojson);
+//load locations from json file
+$.getJSON("routes/locations.json", function (data) {
 
-    // CONSTRUCT THE MAP
-    var map = L.map('map').fitBounds(markers.getBounds());
-    baseLayer.addTo(map);
-    markers.addTo(map);
+  //load the locations onto map
+  var locationsLayer = L.geoJson(data, {
+
+    onEachFeature: function (feature, layer) {
+
+      //set icon style for location marker based on zone
+      layer.setIcon(defaultMarker);
+
+      //add popups to each marker
+      layer.bindPopup(feature.properties.name);
+
+    }
   });
+
+  //create cluster group
+  var locations = new L.markerClusterGroup();
+  //add geojson points to group
+  locations.addLayer(locationsLayer);
+
+  //zoom and center map around points
+  map.fitBounds(locationsLayer.getBounds());
+
+  //add points to map
+  locations.addTo(map);
+
+});
+
+})(jQuery);
   </script>
 </body>
 </head>
