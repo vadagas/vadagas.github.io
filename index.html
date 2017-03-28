@@ -1,4 +1,5 @@
 <html>
+	
 <head>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
@@ -20,12 +21,12 @@
 <body>
   <div id="map"></div>
   <script>
-  L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
   // ADD YOUR BASE TILES
-  var baseLayer = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})
+  var baseLayer = L.tileLayer('https://a.tiles.mapbox.com/v3/landplanner.map-4y9ngu48/{z}/{x}/{y}.png', {
+    maxZoom: 18
+  });
   // DEFINE THE CLUSTER LAYER
-  var markers = L.markerClusterGroup({showCoverageOnHover: false,});
+  var markers = L.markerClusterGroup();
 
   // CALL THE GEOJSON HERE
   $.getJSON("st.geojson", function(data) {
@@ -42,12 +43,11 @@
     markers.addLayer(geojson);
 
     // CONSTRUCT THE MAP
-    var map = L.map('map', {
-		center: [55.80870, 37.412091],
-		zoom: 5,
-		layers: [baseLayer, markers]
-	});
-    L.control.layers(baseLayer, markers).addTo(map);
+    var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
+    baseLayer.addTo(map);
+    markers.addTo(map);
+  });
   </script>
 </body>
+</head>
 </html>
