@@ -25,7 +25,7 @@
   var baseLayer = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
                  attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})
   // DEFINE THE CLUSTER LAYER
-  var markers = L.markerClusterGroup();
+  var markers = L.markerClusterGroup({showCoverageOnHover: false,});
 
   // CALL THE GEOJSON HERE
   $.getJSON("st.geojson", function(data) {
