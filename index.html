@@ -42,7 +42,7 @@ var defaultMarker = L.icon({
 });
 
 //load locations from json file
-$.getJSON("routes/locations.json", function (data) {
+$.getJSON("st.geojson", function (data) {
 
   //load the locations onto map
   var locationsLayer = L.geoJson(data, {
