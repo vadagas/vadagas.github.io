@@ -1,18 +1,13 @@
+<!DOCTYPE html>
 <html>
 <head>
-  <meta charset=utf-8 />
-  <title>Vadagas test page</title>
-  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-	
-  <!-- Load Leaflet-->
-  <link rel="stylesheet" href="lib/leaflet.css" />
-  <script src="lib/leaflet.js"></script>
-	<script type="text/javascript" src="lib/leaflet.ajax.js"></script>
-	<script src="jquery-2.1.1.min.js"></script>
-  <!-- Load Mapbox -->
-  <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-  <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-  <style>
+  <title>Marker Cluster Webmap</title>
+  <meta charset="utf-8" />
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+<style>
     body { margin:0; padding:0; }
     #map { position: absolute; top:0; bottom:0; right:0; left:0; }
   </style>
@@ -20,51 +15,37 @@
 <body>
 
 <div id="map"></div>
-
-<script>
-	L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
-  var test_points = new L.LayerGroup();
-	L.marker([56.80870, 38.412091]).bindPopup('Тестовая точка 1').addTo(test_points),
-	L.marker([57.80870, 39.412091]).bindPopup('Тестовая точка 2').addTo(test_points),
-	L.marker([58.80870, 40.41209159]).bindPopup('Тестовая точка 3').addTo(test_points),
-	L.marker([59.808707, 41.412091]).bindPopup('Тестовая точка 4').addTo(test_points);
-	var mapbox   = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
-                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'}),
-			openstreetmap  = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  <script src="http://cdn.leafletjs.com/leaflet-0.6.2/leaflet.js"></script>    
+  <script>
+  // ADD YOUR BASE TILES
+  var baseLayer = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                  		 	 attribution: '&copy; <a rel="nofollow" href="http://osm.org/copyright">OpenStreetMap</a> contributors'});
-	var map = L.map('map', {
-		center: [55.80870, 37.412091],
-		zoom: 5,
-		layers: [mapbox, test_points]
-	});
-	var baseLayers = {
-		"Mapbox": mapbox,
-		"Openstreetmap": openstreetmap
-	};
-	var overlays = {
-		"Тестовые точки": test_points
-	};
-	L.control.layers(baseLayers, overlays).addTo(map);
-	
-	// load GeoJSON from an external file
-	$.getJSON("st.geojson",function(data){
-  var ratIcon = L.icon({
+  // DEFINE THE CLUSTER LAYER
+  var markers = L.markerClusterGroup();
+
+  // CALL THE GEOJSON HERE
+  $.getJSON("st.geojson", function(data) {
+	var ratIcon = L.icon({
     iconUrl: 'circle.png',
     iconSize: [16,16]
-  });
-		
-	// add GeoJSON layer to the map once the file is loaded
-  L.geoJson(data,{
-    pointToLayer: function(feature,latlng){
-	  	var marker = L.marker(latlng,{icon: ratIcon});
-		var info = function(k){
-				var str = k + ": " + feature.properties[k];
-				return str;}
-      marker.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
-      return marker;
-			}
-  }).addTo(map);
-});
-</script>
-</body>
+	});
+    var geojson = L.geoJson(data, {
+      onEachFeature: function (feature, layer) {
+        // USE A CUSTOM MARKER
+        layer.setIcon(ratIcon);
+
+        // ADD A POPUP WITH A CHART
+        layer.bindPopup("<h1>" + feature.properties.NAME);
+
+      }
+    });
+
+    // CONSTRUCT THE MAP
+    var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
+    baseLayer.addTo(map);
+    markers.addTo(map);
+ });
+  </script>
+First webmap with many points in Berlin.
+ </body>
 </html>
