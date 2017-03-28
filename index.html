@@ -21,8 +21,6 @@
 <body>
   <div id="map"></div>
   <script>
-(function($) {
-
 //create map
 var map = new L.Map("map", {center: [40.7,-74.3], zoom: 11, attributionControl:false});
 
@@ -70,8 +68,6 @@ $.getJSON("st.geojson", function (data) {
   locations.addTo(map);
 
 });
-
-})(jQuery);
   </script>
 </body>
 </head>
