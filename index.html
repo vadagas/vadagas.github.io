@@ -30,14 +30,9 @@ mapTile.addTo(map);
 
 //create marker style
 var defaultMarker = L.icon({
-  iconUrl: "_img/ui/marker-icon-2x.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  shadowUrl: '_img/ui/marker-shadow.png',
-  shadowSize: [41, 41],
-  shadowAnchor: [13, 41],
-  popupAnchor:  [0, -28]
-});
+    iconUrl: 'circle.png',
+    iconSize: [16,16]
+	});;
 
 //load locations from json file
 $.getJSON("st.geojson", function (data) {
@@ -50,8 +45,12 @@ $.getJSON("st.geojson", function (data) {
       //set icon style for location marker based on zone
       layer.setIcon(defaultMarker);
 
+       var info = function(k){
+				var str = k + ": " + feature.properties[k];
+				return str;}
+	    
       //add popups to each marker
-      layer.bindPopup(feature.properties.name);
+      layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
 
     }
   });
