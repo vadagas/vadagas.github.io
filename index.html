@@ -20,10 +20,10 @@
 <body>
   <div id="map"></div>
   <script>
+  L.mapbox.accessToken = 'pk.eyJ1IjoidmFkYWdhcyIsImEiOiJjaXEyOTYydjEwMDRjaTBua3phZjIzbnN3In0.maE_r71bfogyYdOIKRJRpw';
   // ADD YOUR BASE TILES
-  var baseLayer = L.tileLayer('https://a.tiles.mapbox.com/v3/landplanner.map-4y9ngu48/{z}/{x}/{y}.png', {
-    maxZoom: 18
-  });
+  var baseLayer = L.tileLayer('https://api.mapbox.com/v4/vadagas.0i2bbb88/{z}/{x}/{y}.png?access_token=' + L.mapbox.accessToken, {
+                 attribution: '© <a href="https://www.mapbox.com/map-feedback/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'})
   // DEFINE THE CLUSTER LAYER
   var markers = L.markerClusterGroup();
 
