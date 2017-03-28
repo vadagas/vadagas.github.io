@@ -28,7 +28,7 @@
   var markers = L.markerClusterGroup();
 
   // CALL THE GEOJSON HERE
-  $.getJSON("saplaces.geojson", function(data) {
+  $.getJSON("st.geojson", function(data) {
     var geojson = L.geoJson(data, {
       onEachFeature: function (feature, layer) {
         // USE A CUSTOM MARKER
