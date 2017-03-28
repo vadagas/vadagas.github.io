@@ -42,10 +42,12 @@
     markers.addLayer(geojson);
 
     // CONSTRUCT THE MAP
-    var map = L.map('map', {maxZoom: 9}).fitBounds(markers.getBounds());
-    baseLayer.addTo(map);
-    markers.addTo(map);
-  });
+    var map = L.map('map', {
+		center: [55.80870, 37.412091],
+		zoom: 5,
+		layers: [baseLayer, markers]
+	});
+    L.control.layers(baseLayer, markers).addTo(map);
   </script>
 </body>
 </html>
