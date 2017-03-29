@@ -30,8 +30,6 @@ mapbox.addTo(map);
 //add osm map tiles
 var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 osm.addTo(map);
-var stamen = new L.TileLayer('http://{s}.tile.stamen.com/watercolor/{z}/{x}/{y}.jpg');	
-stamen.addTo(map);
 //create marker style
 var defaultMarker = L.icon({
     iconUrl: 'circle.png',
@@ -72,8 +70,7 @@ $.getJSON("st.geojson", function (data) {
 
 var baseLayers = {
 		"Mapbox": mapbox,
-		"Openstreetmap": osm,
-		"Stamen": stamen };
+		"Openstreetmap": osm };
 var overlays = {
 		"Тестовые точки": locations
 	};	  
