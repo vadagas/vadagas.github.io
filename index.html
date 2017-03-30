@@ -59,7 +59,6 @@ $.getJSON("st.geojson", function (data) {
   locations.addLayer(locationsLayer);
 
   //zoom and center map around points
-  map.fitBounds(locationsLayer.getBounds());
 
   //add points to map
   locations.addTo(map);
