@@ -21,11 +21,15 @@
 <body>
   <div id="map"></div>
   <script>
-L.mapbox.accessToken = 'pk.eyJ1IjoiZGRjcmVhdGl2ZSIsImEiOiJjaXU4aWp6dWIwMDgyMnNwZHN0eTN3bGtzIn0.JSbKaBx8Pu9Xtf4YxhT-sQ';
 //create map
-var map = L.mapbox.map('map', null, {
-      maxZoom: 18
-  }).setView[22.76, -25.84];
+var map = new L.Map("map", {center: [55.80870, 37.412091], zoom: 11, attributionControl:false});
+
+//add mapbox map tiles
+var mapbox = new L.TileLayer("https://api.mapbox.com/styles/v1/ddcreative/ciu8ip2c0001w2jpcueu3fffk/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiZGRjcmVhdGl2ZSIsImEiOiJjaXU4aWp6dWIwMDgyMnNwZHN0eTN3bGtzIn0.JSbKaBx8Pu9Xtf4YxhT-sQ");
+mapbox.addTo(map);
+//add osm map tiles
+var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+osm.addTo(map);
 //create marker style
 var defaultMarker = L.icon({
     iconUrl: 'circle.png',
@@ -59,20 +63,18 @@ $.getJSON("st.geojson", function (data) {
   locations.addLayer(locationsLayer);
 
   //zoom and center map around points
+  map.fitBounds(locationsLayer.getBounds());
 
   //add points to map
   locations.addTo(map);
 
-  var baselayers = {
-      Streets: L.mapbox.tileLayer('mapbox.streets'),
-      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
-      Satellite: L.mapbox.tileLayer('mapbox.satellite')
-  };
-	var overlays = {
+var baseLayers = {
+		"Mapbox": mapbox,
+		"Openstreetmap": osm };
+var overlays = {
 		"Тестовые точки": locations
-	};
-	baselayers.Streets.addTo(map);
-	L.control.layers(baseLayers,overlays).addTo(map);	  
+	};	  
+L.control.layers(baseLayers,overlays).addTo(map);	  
 	  
 });
   </script>
