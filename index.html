@@ -42,27 +42,23 @@ var ratMarker = L.icon({
 
 //load locations from json file
 $.getJSON("st.geojson", function (data) {
-
-  //load the locations onto map
-  var locationsLayer = L.geoJson(data, {
+    // set violationPoints to the dataset, and add the rodent violation GeoJSON layer to the map
+    var locationsLayer = L.geoJson(data, {
 
     onEachFeature: function (feature, layer) {
-
-       var info = function(k){
+			var info = function(k){
 				var str = k + ": " + feature.properties[k];
 				return str;}
-	    
-      //add popups to each marker
-      layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
-		pointToLayer: function (feature, latlng) {
-            if (feature.properties.sea == "Baltic"){
-                layer.setIcon(defaultMarker)};
+            layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
+        }, pointToLayer: function (feature, latlng) {
+            if (feature.properties.status == "Cited"){
+                var marker = L.marker(latlng,{icon: defaultMarker});
             } else {
-                layer.setIcon(ratMarker)};
+                var marker = L.marker(latlng,{icon: ratMarker});
             };
-    }
-  });
-
+	return marker;
+        }
+    });
   //create cluster group
   var locations = new L.markerClusterGroup({showCoverageOnHover: false,});
   //add geojson points to group
