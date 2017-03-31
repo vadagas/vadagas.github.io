@@ -77,10 +77,8 @@ var overlays = {
 		"Тестовые точки": locations
 	};	  
 L.control.layers(baseLayers,overlays).addTo(map);	    
+L.Control.Legend().addTo(map);
 });
-var legendControl = new L.Control.Legend();
-
-legendControl.addTo(map);
   </script>
 </body>
 </head>
