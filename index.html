@@ -35,6 +35,10 @@ var defaultMarker = L.icon({
     iconUrl: 'circle.png',
     iconSize: [16,16]
 	});;
+var ratMarker = L.icon({
+    iconUrl: 'rat.png',
+    iconSize: [16,16]
+	});;
 
 //load locations from json file
 $.getJSON("st.geojson", function (data) {
@@ -44,16 +48,18 @@ $.getJSON("st.geojson", function (data) {
 
     onEachFeature: function (feature, layer) {
 
-      //set icon style for location marker based on zone
-      layer.setIcon(defaultMarker);
-
        var info = function(k){
 				var str = k + ": " + feature.properties[k];
 				return str;}
 	    
       //add popups to each marker
       layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
-
+		pointToLayer: function (feature, latlng) {
+            if (feature.properties.sea == "Baltic"){
+                layer.setIcon(defaultMarker)};
+            } else {
+                layer.setIcon(ratMarker)};
+            };
     }
   });
 
