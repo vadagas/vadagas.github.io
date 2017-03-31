@@ -116,7 +116,7 @@ L.control.miniMapLayerSwitcher({
 		}).addTo(map);  
 L.control.layers(null,overlays).addTo(map);	
 // Create Leaflet Control Object for Legend
-var legend = L.control.layers(null,overlays{position: 'bottomright'});
+var legend = L.control.layers({position: 'bottomright'});
 
 // Function that runs when legend is added to map
 legend.onAdd = function (map) {
