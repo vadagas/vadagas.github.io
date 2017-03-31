@@ -51,7 +51,7 @@ $.getJSON("st.geojson", function (data) {
 				return str;}
             layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
         }, pointToLayer: function (feature, latlng) {
-            if (feature.properties.status == "Cited"){
+            if (feature.properties.sea == "Baltic"){
                 var marker = L.marker(latlng,{icon: defaultMarker});
             } else {
                 var marker = L.marker(latlng,{icon: ratMarker});
