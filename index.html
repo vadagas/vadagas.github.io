@@ -18,6 +18,9 @@
   <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+	<link rel="stylesheet" href="lib/leaflet.minimaplayerswitcher.css" />
+	<script src="lib/Leaflet.minimaplayerswitcher.js"></script>
+	<script src="lib/Control.MiniMapLayerSwitcher.js"></script>
 <body>
   <div id="map"></div>
   <script>
@@ -76,7 +79,13 @@ var baseLayers = {
 var overlays = {
 		"Тестовые точки": locations
 	};	  
-L.control.layers(baseLayers,overlays).addTo(map);	    
+L.control.miniMapLayerSwitcher({
+			'Toner': toner,
+			'Water Color': watercolor,
+			'OpenStreetMap': osm
+		}, {
+			position: 'bottomleft'
+		}).addTo(map);  
 });
   </script>
 </body>
