@@ -2,17 +2,80 @@
 <head>
   <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet' />
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
+  	<style>
+		body {
+			margin: 0px;
+		}
 
-    html, body, #map {
-      height: 100%;
-    }
+		img {
+			float: left;
+			padding-right: 10px;
+		}
 
-  </style>
+		p {
+		    font-size: 15px;
+		    line-height: 25px;
+		}
+
+		h1 {
+			line-height: 60px;
+			margin-top: 0px;
+			margin-bottom: 0px;
+			font-weight: lighter;		
+		}
+
+		#wrapper {
+			width: 750px;
+		}
+
+		#map {
+			width: 750px;
+			margin: 0 auto;
+			height: 375px;
+		}
+
+		#controls {
+			width: 100%;
+			margin: 0 auto;
+		}
+
+		#header {
+			margin-top: 0px;
+			margin-bottom: 0px;
+		}
+
+		.legend {
+			line-height: 18px;
+			color: #333333;
+			font-family: 'Open Sans', Helvetica, sans-serif;
+			padding: 6px 8px;
+			background: white;
+			background: rgba(255,255,255,0.8);
+			box-shadow: 0 0 15px rgba(0,0,0,0.2);
+			border-radius: 5px;
+		}
+
+		.legend i {
+			width: 18px;
+			height: 18px;
+			float: left;
+			margin-right: 8px;
+			opacity: 0.7;
+		}
+
+		.legend img {
+			width: 18px;
+			height: 18px;
+			float: left;
+		}
+
+		.legend p {
+			font-size: 12px;
+			line-height: 18px;
+			margin: 0;
+		}
+	</style>
+
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
