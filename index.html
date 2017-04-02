@@ -17,9 +17,9 @@
   <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
   <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
-	<link rel="stylesheet" href="lib/leaflet.minimaplayerswitcher.css" />
-	<script src="lib/Leaflet.minimaplayerswitcher.js"></script>
-	<script src="lib/Control.MiniMapLayerSwitcher.js"></script>
+  <link rel="stylesheet" href="lib/leaflet.minimaplayerswitcher.css" />
+  <script src="lib/Leaflet.minimaplayerswitcher.js"></script>
+  <script src="lib/Control.MiniMapLayerSwitcher.js"></script>
 <body>
   <div id="map"></div>
   <script>
@@ -34,16 +34,16 @@ var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 osm.addTo(map);
 //create marker style
 var defaultMarker = L.icon({
-    iconUrl: '2.png',
+    iconUrl: 'image/2.png',
     iconSize: [20,20]
 	});;
 var ratMarker = L.icon({
-    iconUrl: '3.png',
+    iconUrl: 'image/3.png',
     iconSize: [20,20]
 	});;
 
 //load locations from json file
-$.getJSON("st.geojson", function (data) {
+$.getJSON("data/st.geojson", function (data) {
     // set violationPoints to the dataset, and add the rodent violation GeoJSON layer to the map
     var locationsLayer = L.geoJson(data, {
 
