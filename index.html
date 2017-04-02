@@ -86,6 +86,33 @@ L.control.miniMapLayerSwitcher({
 		}).addTo(map);  
 L.control.layers(null,overlays).addTo(map);	    
 }); 
+// Create Leaflet Control Object for Legend
+		var legend = L.control({position: 'bottomright'});
+
+		// Function that runs when legend is added to map
+		legend.onAdd = function (map) {
+
+			// Create Div Element and Populate it with HTML
+			var div = L.DomUtil.create('div', 'legend');		    
+			div.innerHTML += '<b>Violation Density</b><br />';
+			div.innerHTML += 'by Neighborhood<br />';
+			div.innerHTML += '<small>Violations/Sq. Mi.</small><br />';  
+			div.innerHTML += '<i style="background: #a50f15"></i><p>85+</p>';
+			div.innerHTML += '<i style="background: #de2d26"></i><p>15-85</p>';
+			div.innerHTML += '<i style="background: #fb6a4a"></i><p>8-15</p>';
+			div.innerHTML += '<i style="background: #fcae91"></i><p>4-8</p>';
+			div.innerHTML += '<i style="background: #fee5d9"></i><p>0-4</p>';
+			div.innerHTML += '<hr>Individual Violations';
+			div.innerHTML += '<br /><img src="images/rodent_open.png">Cited';
+			div.innerHTML += '<br /><img src="images/rodent.png">Corrected';
+
+			// Return the Legend div containing the HTML content
+			return div;
+		};
+
+		// Add Legend to Map
+		legend.addTo(map);
+
   </script>
 </body>
 </head>
