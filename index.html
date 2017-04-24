@@ -33,11 +33,11 @@ mapbox.addTo(map);
 var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
 osm.addTo(map);
 //create marker style
-var defaultMarker = L.icon({
+var marker1 = L.icon({
     iconUrl: 'image/2.png',
     iconSize: [20,20]
 	});;
-var ratMarker = L.icon({
+var marker2 = L.icon({
     iconUrl: 'image/3.png',
     iconSize: [20,20]
 	});;
@@ -54,9 +54,9 @@ $.getJSON("data/st.geojson", function (data) {
             layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
         }, pointToLayer: function (feature, latlng) {
             if (feature.properties.sea == "Baltic"){
-                var marker = L.marker(latlng,{icon: defaultMarker});
+                var marker = L.marker(latlng,{icon: marker1});
             } else {
-                var marker = L.marker(latlng,{icon: ratMarker});
+                var marker = L.marker(latlng,{icon: marker2});
             };
 	return marker;
         }
