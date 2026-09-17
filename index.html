@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary meta tags -->
+    <title>Vadim Aliautdinov — Senior GIS Specialist | ArcGIS Enterprise & Spatial Data Automation</title>
+    <meta name="description" content="Senior GIS Specialist with 13+ years of experience in ArcGIS Enterprise administration, Python/FME automation, 4 TB+ LIDAR (LAS) & raster pipelines, spatial databases, and operational dashboards. Open to relocation.">
+    <meta name="author" content="Vadim Aliautdinov">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Vadim Aliautdinov — Senior GIS Specialist">
+    <meta property="og:description" content="ArcGIS Enterprise administration, Python/FME automation, LIDAR (LAS) & raster pipelines, spatial data engineering. 13+ years of experience. Open to relocation.">
+    <meta property="og:image" content="assets/img/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Vadim Aliautdinov — Senior GIS Specialist">
+    <meta property="twitter:description" content="ArcGIS Enterprise administration, Python/FME automation, LIDAR (LAS) & raster pipelines, spatial data engineering. 13+ years of experience. Open to relocation.">
+
+    <!-- Favicon (relative path for GitHub Pages) -->
+<link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=2">
+    <!-- Structured data -->
+    <!-- TODO: replace with your real profile URLs -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Vadim Aliautdinov",
+        "email": "vadagas.90@gmail.com",
+        "jobTitle": "Senior GIS Specialist",
+        "knowsAbout": ["ArcGIS Enterprise", "Python", "FME", "PostGIS", "LIDAR (LAS)", "DEM", "Remote Sensing", "Spatial Data", "GIS"],
+        "sameAs": [
+            "https://www.linkedin.com/in/YOUR-PROFILE",
+            "https://github.com/YOUR-USERNAME"
+        ]
+    }
+    </script>
+
+    <!-- Tailwind CSS (layout utilities only; all colors live in css/style.css variables) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Theme bootstrap: apply the saved theme before first paint (kept inline to avoid flicker) -->
+    <script>
+        (function () {
+            var t = 'light'; /* set 'dark' here if you prefer dark by default */
+            try { var s = localStorage.getItem('va-theme'); if (s === 'dark' || s === 'light') t = s; } catch (e) {}
+            document.documentElement.setAttribute('data-theme', t);
+        })();
+    </script>
+
+    <!-- Portfolio styles (themes + semantic classes) -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Background decor: contour rings (light) / glow + coordinate grid (dark) -->
+    <div class="decor" aria-hidden="true"></div>
+
+    <!-- Constellation canvas (colors follow the active theme) -->
+    <canvas id="geo-canvas" class="fixed inset-0 z-0 pointer-events-none" aria-hidden="true"></canvas>
+
+    <div class="relative z-10">
+
+        <!-- Header -->
+        <header class="site-header">
+            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center gap-4 flex-wrap">
+                <div class="flex flex-col">
+                    <h1 class="text-lg font-bold tracking-tight">Vadim Aliautdinov</h1>
+                    <span class="brand-sub">Senior GIS Specialist</span>
+                </div>
+                <nav class="flex gap-6 flex-wrap" aria-label="Main navigation">
+                    <a href="#about" class="nav-link text-sm font-medium">About</a>
+                    <a href="#metrics" class="nav-link text-sm font-medium">Impact</a>
+                    <a href="#skills" class="nav-link text-sm font-medium">Expertise</a>
+                    <a href="#experience" class="nav-link text-sm font-medium">Experience</a>
+                    <a href="#projects" class="nav-link text-sm font-medium">Projects</a>
+                    <a href="#education" class="nav-link text-sm font-medium">Certifications</a>
+                    <a href="#contact" class="nav-link text-sm font-medium">Contact</a>
+                </nav>
+                <div class="flex gap-3 items-center">
+                    <!-- Theme switcher -->
+                    <button id="theme-toggle" type="button" class="btn-outline btn-icon" aria-label="Switch color theme" title="Switch color theme">
+                        <i data-lucide="sun" class="w-4 h-4 icon-sun"></i>
+                        <i data-lucide="moon" class="w-4 h-4 icon-moon"></i>
+                    </button>
+                    <!-- TODO: set your LinkedIn URL -->
+                    <a href="https://linkedin.com/in/vadim-alyautdinov" target="_blank" rel="noopener noreferrer" class="btn-outline btn-icon" aria-label="LinkedIn profile">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </a>
+                    <!-- TODO: set your GitHub URL -->
+                    <a href="https://github.com/vadagas" target="_blank" rel="noopener noreferrer" class="btn-outline btn-icon" aria-label="GitHub profile">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="CV_Vadim_Aliautdinov_Senior_GIS.pdf" download class="btn-solid">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Download CV
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero / About -->
+        <section id="about" class="py-28 px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <span class="eyebrow">Spatial Infrastructure · ArcGIS Enterprise · ETL Automation</span>
+                <h1 class="title-grad text-5xl md:text-6xl font-extrabold leading-tight mb-5">
+                    Architecting Enterprise GIS<br>&amp; Scalable Spatial Systems.
+                </h1>
+                <p class="accent text-base font-semibold mb-6">
+                    Senior GIS Specialist | ArcGIS Enterprise Administrator | Spatial Data Automation
+                </p>
+
+                <div class="flex gap-3 justify-center flex-wrap mb-8">
+                    <span class="badge-pill">Open to Relocation</span>
+                    <span class="badge-pill">Remote / Hybrid / On-site</span>
+                    <span class="badge-pill">Available for interviews</span>
+                </div>
+
+                <p class="muted text-base max-w-3xl mx-auto mb-8 leading-relaxed">
+                    Senior GIS Specialist with 13+ years of experience delivering mission-critical geospatial solutions
+                    for government and enterprise organisations. Proven track record managing 80+ GB geodatabases,
+                    4 TB+ LIDAR (LAS) pipelines, and high-availability spatial platforms.
+                </p>
+
+                <div class="flex gap-4 justify-center flex-wrap">
+                    <a href="CV_Vadim_Aliautdinov_Senior_GIS.pdf" download class="btn-solid">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Download CV
+                    </a>
+                    <a href="#projects" class="btn-outline">
+                        <i data-lucide="folder" class="w-4 h-4"></i>
+                        View Projects
+                    </a>
+                    <a href="mailto:vadagas.90@gmail.com?subject=GIS%20opportunity" class="btn-outline">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Get in Touch
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Impact metrics -->
+        <section id="metrics" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5">
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">13+</div>
+                        <div class="muted text-xs font-medium">Years delivering GIS solutions for government &amp; enterprise</div>
+                    </div>
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">99%+</div>
+                        <div class="muted text-xs font-medium">Uptime across production ArcGIS Server environments over 9 years</div>
+                    </div>
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">4 TB+</div>
+                        <div class="muted text-xs font-medium">LIDAR (LAS) &amp; raster pipelines: tile generation cut from days to hours</div>
+                    </div>
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">1,120+</div>
+                        <div class="muted text-xs font-medium">Layers consolidated into an 80 GB geodatabase</div>
+                    </div>
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">~20 hrs</div>
+                        <div class="muted text-xs font-medium">Saved per week through Python/FME ETL automation</div>
+                    </div>
+                    <div class="card rounded-2xl p-6 text-center">
+                        <div class="metric-value text-4xl font-extrabold mb-2">2–3×</div>
+                        <div class="muted text-xs font-medium">Faster spatial queries after index &amp; query-plan optimisation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Expertise + toolkit -->
+        <section id="skills" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="eyebrow">Capabilities</span>
+                    <h2 class="title-grad text-4xl font-extrabold mb-3">Technical Core &amp; Domains</h2>
+                    <p class="muted max-w-2xl mx-auto">
+                        Combining advanced enterprise architecture, Python automation pipelines, and rigorous cartographic precision.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">ArcGIS Enterprise &amp; Infrastructure</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">
+                            Advanced multi-tier administration across Portal for ArcGIS, ArcGIS Server, Data Store, and ArcGIS Online. Specialized in high-availability deployments, security protocols, capacity planning, and maintaining zero unplanned downtime.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Enterprise</span>
+                            <span class="tag">Portal &amp; Server</span>
+                            <span class="tag">ArcGIS Online</span>
+                            <span class="tag">Multi-tier Architectures</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">ETL &amp; Automation</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">
+                            Building scalable pipelines with Python and FME. Eliminating manual workflows and cutting ingestion times by up to 60%.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Python</span>
+                            <span class="tag">ArcPy</span>
+                            <span class="tag">GeoPandas</span>
+                            <span class="tag">Pandas</span>
+                            <span class="tag">FME</span>
+                            <span class="tag">Geoprocessing</span>
+                            <span class="tag">QA/QC</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Spatial DBs &amp; LIDAR (LAS)</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">
+                            Processing massive 4 TB+ point clouds, DEMs, and multi-band rasters. Index optimization in PostgreSQL/PostGIS, MS SQL, and Oracle.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">PostGIS</span>
+                            <span class="tag">MS SQL</span>
+                            <span class="tag">Oracle</span>
+                            <span class="tag">LIDAR (LAS, 4TB+)</span>
+                            <span class="tag">GDAL / OGR</span>
+                            <span class="tag">GeoTIFF</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Geodetic Datums, Projections &amp; Cartography</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">
+                            Deep mathematical expertise in geodetic transformations and on-the-fly reprojection across systems (WGS84, ETRS89, Pulkovo 1942, SK-95, UTM, Gauss-Krüger). Standardized cartographic series production to national publishing standards.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Datum Transformations</span>
+                            <span class="tag">Map Series Automation</span>
+                            <span class="tag">Cartography</span>
+                            <span class="tag">Spatial Analysis</span>
+                            <span class="tag">QGIS / ArcGIS Pro</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Web GIS &amp; Dashboards</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">
+                            Designed and deployed interactive Web GIS applications and operational dashboards for monitoring and decision support.
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Dashboards</span>
+                            <span class="tag">Web AppBuilder</span>
+                            <span class="tag">Interactive Maps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Full technical toolkit -->
+                <div class="text-center mt-16 mb-10">
+                    <span class="eyebrow">Technical Toolkit</span>
+                    <h3 class="text-2xl font-bold mb-2">Full technical toolkit.</h3>
+                    <p class="muted max-w-2xl mx-auto">
+                        Tools and technologies I use to process, analyze and communicate geospatial information.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">GIS &amp; Mapping</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Pro</span>
+                            <span class="tag">ArcGIS Online</span>
+                            <span class="tag">QGIS</span>
+                            <span class="tag">ArcMap</span>
+                            <span class="tag">Global Mapper</span>
+                            <span class="tag">Google Earth Pro</span>
+                            <span class="tag">Cartography</span>
+                            <span class="tag">Spatial Analysis</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">Remote Sensing</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Google Earth Engine</span>
+                            <span class="tag">Sentinel-2</span>
+                            <span class="tag">Landsat</span>
+                            <span class="tag">NDVI</span>
+                            <span class="tag">NDWI</span>
+                            <span class="tag">LST</span>
+                            <span class="tag">Change Detection</span>
+                            <span class="tag">Classification</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">Development</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Python</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">GeoPandas</span>
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Leaflet</span>
+                            <span class="tag">OpenLayers</span>
+                            <span class="tag">GeoJSON</span>
+                            <span class="tag">Google Colab</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">Geospatial Data</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Vector Data</span>
+                            <span class="tag">Raster Data</span>
+                            <span class="tag">Spatial Databases</span>
+                            <span class="tag">PostgreSQL</span>
+                            <span class="tag">PostGIS</span>
+                            <span class="tag">MS SQL</span>
+                            <span class="tag">Oracle</span>
+                            <span class="tag">KML</span>
+                            <span class="tag">GeoPackage</span>
+                            <span class="tag">GeoTIFF</span>
+                            <span class="tag">LAS / LAZ</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">Analysis &amp; Automation</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Python Automation</span>
+                            <span class="tag">FME</span>
+                            <span class="tag">Geoprocessing</span>
+                            <span class="tag">Data Cleaning</span>
+                            <span class="tag">QA/QC</span>
+                            <span class="tag">Spatial Statistics</span>
+                            <span class="tag">Spatial Clustering</span>
+                            <span class="tag">Flood Modelling</span>
+                            <span class="tag">Time Series</span>
+                            <span class="tag">Excel</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h4 class="text-base font-bold mb-4">WebGIS</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Dashboards</span>
+                            <span class="tag">Web AppBuilder</span>
+                            <span class="tag">Interactive Maps</span>
+                            <span class="tag">QGIS2Web</span>
+                            <span class="tag">OpenStreetMap</span>
+                            <span class="tag">Responsive UI</span>
+                            <span class="tag">GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience -->
+        <section id="experience" class="py-20 px-6">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="eyebrow">Career Journey</span>
+                    <h2 class="title-grad text-4xl font-extrabold">Professional Experience</h2>
+                </div>
+
+                <div class="space-y-5">
+                    <div class="card card-accent rounded-2xl p-7">
+                        <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+                            <div>
+                                <div class="text-lg font-bold">Senior GIS Specialist</div>
+                                <div class="accent text-sm font-semibold">Institute of Geographic Information Technologies (IGIT)</div>
+                            </div>
+                            <div class="muted-2 text-xs font-semibold tracking-wider">2023 – PRESENT</div>
+                        </div>
+                        <ul class="space-y-2 mt-3 list-none">
+                            <li class="bullet muted text-sm leading-relaxed">Administers a multi-tier ArcGIS Enterprise production environment (Portal · Server · Data Store) underpinning 3 national government programmes with zero unplanned downtime.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Built Python/FME pipelines that consolidated 1,120+ layers and an 80 GB geodatabase, eliminating ~20 hrs/week of manual data preparation.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Engineered scalable LIDAR (LAS) and raster processing pipelines for datasets exceeding 4 TB, cutting tile-generation time from days to hours.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Optimized spatial query performance by 2–3× across production services via index redesign and query-plan refactoring.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Empowers 10+ government analysts through structured training, driving GIS adoption across 3 departments.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card card-accent rounded-2xl p-7">
+                        <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+                            <div>
+                                <div class="text-lg font-bold">Senior GIS Specialist / ArcGIS Enterprise Specialist</div>
+                                <div class="accent text-sm font-semibold">Data+ (Largest Regional Esri Distributor)</div>
+                            </div>
+                            <div class="muted-2 text-xs font-semibold tracking-wider">2014 – 2023 · 9 YRS</div>
+                        </div>
+                        <ul class="space-y-2 mt-3 list-none">
+                            <li class="bullet muted text-sm leading-relaxed">Architected and delivered ArcGIS Enterprise solutions for 15–30 concurrent government and commercial environments as primary technical authority.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Reduced data ingestion time by ~60% across 10+ client projects by introducing Python and FME ETL automation.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Maintained 99%+ uptime across an extensive portfolio of production ArcGIS Server environments over 9 years.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Mentored 3 junior GIS specialists into independent practitioners through structured code reviews, halving team onboarding time.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card card-accent rounded-2xl p-7">
+                        <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+                            <div>
+                                <div class="text-lg font-bold">GIS Specialist</div>
+                                <div class="accent text-sm font-semibold">ERM Eurasia Limited</div>
+                            </div>
+                            <div class="muted-2 text-xs font-semibold tracking-wider">2013 – 2014</div>
+                        </div>
+                        <ul class="space-y-2 mt-3 list-none">
+                            <li class="bullet muted text-sm leading-relaxed">Engineered spatial database schemas for 5+ major environmental and geophysical projects.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Automated data validation routines, eliminating manual QA checks and accelerating environmental report delivery by ~30%.</li>
+                        </ul>
+                    </div>
+
+                    <div class="card card-accent rounded-2xl p-7">
+                        <div class="flex justify-between items-start flex-wrap gap-2 mb-3">
+                            <div>
+                                <div class="text-lg font-bold">GIS Researcher</div>
+                                <div class="accent text-sm font-semibold">State Oceanographic Institute</div>
+                            </div>
+                            <div class="muted-2 text-xs font-semibold tracking-wider">2011 – 2013</div>
+                        </div>
+                        <ul class="space-y-2 mt-3 list-none">
+                            <li class="bullet muted text-sm leading-relaxed">Developed a publicly accessible web marine atlas for scientific dissemination.</li>
+                            <li class="bullet muted text-sm leading-relaxed">Built custom spatial clustering and pollutant-dispersion modeling tools for marine researchers.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership -->
+        <section id="leadership" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="eyebrow">Leadership</span>
+                    <h2 class="title-grad text-4xl font-extrabold">Leadership &amp; Enablement</h2>
+                    <p class="muted max-w-2xl mx-auto">Mentoring, training and driving GIS adoption across teams and departments.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Mentoring</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">Mentored 3 junior GIS specialists into independent practitioners through structured code reviews and hands-on mentoring, reducing team onboarding time by half.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Code Reviews</span>
+                            <span class="tag">Hands-on Mentoring</span>
+                            <span class="tag">Onboarding</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Training &amp; Documentation</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">Empower 10+ government analysts through structured training and technical documentation, driving GIS tool adoption across 3 departments.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Structured Training</span>
+                            <span class="tag">Technical Documentation</span>
+                            <span class="tag">User Guides</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7">
+                        <h3 class="text-lg font-bold mb-3">Technical Authority</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed">Primary technical authority for Esri's largest regional distributor across 15–30 concurrent environments, retaining all key accounts through expert-level incident response.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Client-facing</span>
+                            <span class="tag">Incident Response</span>
+                            <span class="tag">Solution Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects -->
+        <section id="projects" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="eyebrow">Portfolio Focus</span>
+                    <h2 class="title-grad text-4xl font-extrabold">Selected Projects</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">National Cadastre</div>
+                        <h3 class="text-lg font-bold mb-3">Public Cadastral Map of Russia</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Developed the public cadastral map of Russia across the full production cycle — from processing of all spatial data and ongoing technical support to the creation of the unified national base map.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Cadastral Data</span>
+                            <span class="tag">Unified Base Map</span>
+                            <span class="tag">Technical Support</span>
+                            <span class="tag">Full Cycle</span>
+                        </div>
+                        <div>
+                            <button type="button" data-open-basemap class="gallery-btn">
+                                <i data-lucide="map" class="w-4 h-4"></i>
+                                View multiscale basemap
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">National Monitoring &amp; ML</div>
+                        <h3 class="text-lg font-bold mb-3">Reference Forest Maps of Russia</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Built the national set of geospatial layers and reference map-schemes on forest state and dynamics: Random Forest and maximum-likelihood modelling of forest area, dominant species, age, growing stock, stand density, canopy height and site class from MODIS / Landsat / Sentinel-2 seasonal composites, state forest inventory ground data and FABDEM relief — validated at 85.8–87.3% overall accuracy across 925 M ha of forest land.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Remote Sensing</span>
+                            <span class="tag">Machine Learning</span>
+                            <span class="tag">MODIS / Sentinel-2</span>
+                            <span class="tag">National Scale</span>
+                        </div>
+                        <div>
+                            <button type="button" data-open-forest class="gallery-btn">
+                                <i data-lucide="trees" class="w-4 h-4"></i>
+                                View forest map visuals
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Infrastructure</div>
+                        <h3 class="text-lg font-bold mb-3">Enterprise GIS Platforms</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Designed and deployed resilient ArcGIS Enterprise environments for public sector agencies, enabling seamless access to regional geospatial datasets.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Server</span>
+                            <span class="tag">Portal</span>
+                            <span class="tag">HA Clusters</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Analytics &amp; Modelling</div>
+                        <h3 class="text-lg font-bold mb-3">Flood Modelling &amp; Risk Analysis</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Developed automated geoprocessing workflows for environmental hazard mapping and civil emergency response units.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">DEM Analysis</span>
+                            <span class="tag">Python</span>
+                            <span class="tag">Spatial Analyst</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Web GIS &amp; UI</div>
+                        <h3 class="text-lg font-bold mb-3">Operational Dashboards &amp; Web GIS</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Delivered interactive web portals and live monitoring dashboards that translate complex multi-layer geospatial data into strategic operational decisions.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">ArcGIS Dashboards</span>
+                            <span class="tag">Web AppBuilder</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Automation</div>
+                        <h3 class="text-lg font-bold mb-3">Large-Scale Geodatabase Consolidation</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Automated Python/FME pipelines consolidated 1,120+ layers into an 80 GB geodatabase, eliminating approximately 20 hours per week of manual data preparation.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">Python</span>
+                            <span class="tag">FME</span>
+                            <span class="tag">ETL</span>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Data Processing</div>
+                        <h3 class="text-lg font-bold mb-3">4 TB+ LIDAR (LAS) &amp; Raster Pipeline</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Scalable processing pipelines for large LIDAR (LAS) and raster datasets: tile generation reduced from days to hours, enabling near-real-time analyst access.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">LIDAR (LAS)</span>
+                            <span class="tag">DEM</span>
+                            <span class="tag">GDAL</span>
+                        </div>
+                        <div>
+                            <button type="button" data-open-dem class="gallery-btn">
+                                <i data-lucide="images" class="w-4 h-4"></i>
+                                View DEM visuals
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card rounded-2xl p-7 flex flex-col">
+                        <div class="cat">Performance</div>
+                        <h3 class="text-lg font-bold mb-3">Spatial Query Optimisation</h3>
+                        <p class="muted text-sm mb-4 leading-relaxed flex-1">Improved spatial query performance by 2–3× across production services through index redesign, query-plan optimisation and service configuration tuning.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag">PostGIS</span>
+                            <span class="tag">SQL</span>
+                            <span class="tag">Indexes</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications & education -->
+        <section id="education" class="py-20 px-6">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12">
+                    <span class="eyebrow">Credentials</span>
+                    <h2 class="title-grad text-4xl font-extrabold">Esri Certifications &amp; Training</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-12">
+                    <div class="card rounded-2xl p-6">
+                        <div class="text-base font-bold mb-1.5">Esri Technical Certification: ArcGIS Pro Associate</div>
+                        <div class="muted-2 text-xs font-medium">Issued 2022</div>
+                    </div>
+                    <div class="card rounded-2xl p-6">
+                        <div class="text-base font-bold mb-1.5">ArcGIS Enterprise: Administration &amp; Configuration</div>
+                        <div class="muted-2 text-xs font-medium">Completed 2023</div>
+                    </div>
+                    <div class="card rounded-2xl p-6">
+                        <div class="text-base font-bold mb-1.5">Spatial Analysis with ArcGIS Pro &amp; Building Geodatabases</div>
+                        <div class="muted-2 text-xs font-medium">Specialized Esri Curricula</div>
+                    </div>
+                </div>
+
+                <h3 class="text-2xl font-bold text-center mb-6">Academic Background</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div class="card rounded-2xl p-6">
+                        <div class="text-base font-bold mb-1.5">Master's Degree in Geography, Cartography &amp; Geoinformatics</div>
+                        <div class="muted-2 text-xs font-medium">Lomonosov Moscow State University</div>
+                    </div>
+                    <div class="card rounded-2xl p-6">
+                        <div class="text-base font-bold mb-1.5">Postgraduate Research (Geoecology)</div>
+                        <div class="muted-2 text-xs font-medium">State Oceanographic Institute</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="py-20 px-6 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="title-grad text-5xl font-extrabold mb-4">Ready to scale your spatial data infrastructure?</h2>
+                <p class="muted max-w-2xl mx-auto mb-9 text-base">
+                    Open to Senior GIS Specialist, GIS Engineer, and GIS Technical Lead roles. Available for worldwide relocation.
+                </p>
+
+                <div class="flex gap-4 justify-center flex-wrap mb-8">
+                    <a href="mailto:vadagas.90@gmail.com?subject=GIS%20opportunity" class="btn-solid">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                        Email Me
+                    </a>
+                    <a href="CV_Vadim_Aliautdinov_Senior_GIS.pdf" download class="btn-solid">
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                        Download CV
+                    </a>
+                    <!-- TODO: set your LinkedIn and GitHub URLs -->
+                    <a href="https://www.linkedin.com/in/YOUR-PROFILE" target="_blank" rel="noopener noreferrer" class="btn-outline">LinkedIn</a>
+                    <a href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener noreferrer" class="btn-outline">GitHub</a>
+                </div>
+
+                <div class="flex gap-8 justify-center flex-wrap muted text-sm font-semibold mb-12">
+                    <span>vadagas.90@gmail.com</span>
+                    <span>Open to relocation</span>
+                    <span>Available for interviews</span>
+                </div>
+
+                <div class="card rounded-2xl p-8 text-left max-w-3xl mx-auto">
+                    <h3 class="accent text-lg font-bold mb-5">For Recruiters</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">Location:</span><span class="muted">Open to relocation worldwide</span></div>
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">Target roles:</span><span class="muted">Senior GIS Specialist, GIS Engineer, GIS Technical Lead</span></div>
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">Work format:</span><span class="muted">Remote / Hybrid / On-site</span></div>
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">Languages:</span><span class="muted">Russian (native), English (professional)</span></div>
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">Availability:</span><span class="muted">Available for interviews and technical discussion</span></div>
+                        <div class="flex gap-2 flex-wrap text-sm"><span class="font-bold">References:</span><span class="muted">Available on request</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="site-footer py-8 px-6 text-center">
+            <div class="max-w-7xl mx-auto">
+                <p class="text-sm opacity-85">&copy; 2026 Vadim Aliautdinov. All rights reserved. Hosted on GitHub Pages</p>
+                <p class="mt-2 text-xs">Last updated: September 2026</p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- DEM gallery modal -->
+    <div id="dem-modal" class="modal fixed inset-0 z-[90] hidden overflow-y-auto" role="dialog" aria-modal="true" aria-label="DEM visualization gallery">
+        <div class="max-w-6xl mx-auto px-6 py-10">
+            <div class="flex justify-between items-start gap-4 mb-8">
+                <div>
+                    <span class="eyebrow">Visual Lab</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold">DEM &amp; Terrain Visualization</h3>
+                    <p class="muted text-sm mt-2 max-w-2xl">
+                        Eight rendering variants of the same DEM derived from LIDAR (LAS) data — 1 m resolution, built from the 4 TB+ point-cloud pipeline.
+                        Only the visualization style changes — the source elevation surface is identical. Click any tile to enlarge.
+                    </p>
+                </div>
+                <button id="dem-modal-close" class="btn-outline btn-icon shrink-0" aria-label="Close gallery">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_01.png"
+                        data-caption="Baseline LIDAR (LAS) DEM — raw elevation surface, 1 m resolution">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_01.png" alt="Baseline DEM derived from LIDAR (LAS) data, 1 m resolution, raw elevation surface" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">01</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Baseline LIDAR (LAS) DEM</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">1 m</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_02.png"
+                        data-caption="Hillshade — single-direction relief shading of the same LIDAR (LAS) DEM">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_02.png" alt="Hillshade rendering of the DEM derived from LIDAR (LAS) data, single-direction illumination" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">02</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Hillshade — single-direction relief shading of the same LIDAR (LAS) DEM</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Hillshade</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_03.png"
+                        data-caption="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_03.png" alt="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">03</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Multidirectional</span>
+                            <span class="tag tag-sm">Micro-topography</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_04.png"
+                        data-caption="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_04.png" alt="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">04</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Multidirectional</span>
+                            <span class="tag tag-sm">Micro-topography</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_05.png"
+                        data-caption="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_05.png" alt="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">05</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Multidirectional</span>
+                            <span class="tag tag-sm">Micro-topography</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_06.png"
+                        data-caption="Contours & Hypsometric Tint — elevation ramp and contours of the same LIDAR (LAS) DEM">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_06.png" alt="Hypsometric tinted rendering of the DEM derived from LIDAR (LAS) data with contour lines" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">06</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Contours &amp; Hypsometric Tint — elevation ramp and contours of the same LIDAR (LAS) DEM</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Contours</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_07.png"
+                        data-caption="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_07.png" alt="Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">07</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multi-directional Hillshade — revealing micro-topography for engineering and hydrological reading.</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">Multidirectional</span>
+                            <span class="tag tag-sm">Micro-topography</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/dem/dem_08.png"
+                        data-caption="3D Perspective Visualization — the same LIDAR (LAS) DEM in 3D view">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/dem/dem_08.png" alt="3D perspective visualization of the DEM derived from LIDAR (LAS) data" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">08</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">3D Perspective Visualization — the same LIDAR (LAS) DEM in 3D view</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">LIDAR (LAS)</span>
+                            <span class="tag tag-sm">3D Visualization</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Basemap gallery modal -->
+    <div id="basemap-modal" class="modal fixed inset-0 z-[90] hidden overflow-y-auto" role="dialog" aria-modal="true" aria-label="Multiscale basemap gallery">
+        <div class="max-w-6xl mx-auto px-6 py-10">
+            <div class="flex justify-between items-start gap-4 mb-8">
+                <div>
+                    <span class="eyebrow">Visual Lab</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold">Multiscale Basemap — Public Cadastral Map of Russia</h3>
+                    <p class="muted text-sm mt-2 max-w-2xl">
+                        Six scale levels of the unified base map developed for the public cadastral map of Russia —
+                        from country overview to detailed city view. The same unified base map at different scales. Click any tile to enlarge.
+                    </p>
+                </div>
+                <button id="basemap-modal-close" class="btn-outline btn-icon shrink-0" aria-label="Close gallery">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_01.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 1 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_01.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 1 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">01</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 1 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_02.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 2 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_02.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 2 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">02</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 2 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_03.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 3 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_03.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 3 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">03</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 3 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_04.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 4 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_04.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 4 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">04</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 4 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_05.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 5 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_05.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 5 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">05</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 5 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/pkk_basemap/basemap_06.png"
+                        data-caption="Multiscale basemap — Public Cadastral Map of Russia, scale level 6 of 6">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/pkk_basemap/basemap_06.png" alt="Multiscale basemap of the Public Cadastral Map of Russia — scale level 6 of 6" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">06</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Multiscale basemap — scale level 6 of 6</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Cadastral Basemap</span>
+                            <span class="tag tag-sm">Multiscale</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Forest gallery modal -->
+    <div id="forest-modal" class="modal fixed inset-0 z-[90] hidden overflow-y-auto" role="dialog" aria-modal="true" aria-label="Reference forest maps gallery">
+        <div class="max-w-6xl mx-auto px-6 py-10">
+            <div class="flex justify-between items-start gap-4 mb-8">
+                <div>
+                    <span class="eyebrow">Visual Lab</span>
+                    <h3 class="text-2xl md:text-3xl font-extrabold">Reference Forest Maps of Russia — Modelled Layers</h3>
+                    <p class="muted text-sm mt-2 max-w-2xl">
+                        Seven mutually consistent geospatial layers behind the reference forest map-schemes — forest area, dominant species,
+                        age structure, stand density, canopy height, site class and land-category distribution — produced with Random Forest
+                        regression and maximum-likelihood classification over MODIS, Landsat and Sentinel-2 seasonal composites,
+                        state forest inventory (GIL) ground data and FABDEM relief. Click any tile to enlarge.
+                    </p>
+                </div>
+                <button id="forest-modal-close" class="btn-outline btn-icon shrink-0" aria-label="Close gallery">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_01.png"
+                        data-caption="Forest area & non-forest land categories — reference map-scheme of Russia, overall accuracy 85.8%">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_01.png" alt="Reference map-scheme of Russia: forest area and non-forest land categories" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">01</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Forest area &amp; non-forest land categories</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">OA 85.8%</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_02.png"
+                        data-caption="Dominant tree species — reference map-scheme of Russia, overall accuracy 86.9%">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_02.png" alt="Reference map-scheme of Russia: dominant tree species" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">02</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Dominant tree species</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">OA 86.9%</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_03.png"
+                        data-caption="Age structure of stands — reference map-scheme of Russia, RMSE 26.1 years, R2 0.69">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_03.png" alt="Reference map-scheme of Russia: age structure of forest stands" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">03</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Age structure of stands</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">R² 0.69</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_04.png"
+                        data-caption="Relative stand density (canopy closure) — reference map-scheme of Russia, RMSE 0.16, R2 0.83">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_04.png" alt="Reference map-scheme of Russia: relative stand density (canopy closure)" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">04</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Relative stand density (canopy closure)</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">R² 0.83</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_05.png"
+                        data-caption="Mean height of upper-canopy trees — reference map-scheme of Russia, RMSE 4.1 m, R2 0.28">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_05.png" alt="Reference map-scheme of Russia: mean height of upper-canopy trees" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">05</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Mean height of upper-canopy trees</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">R² 0.28</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_06.png"
+                        data-caption="Site class — reference map-scheme of Russia, RMSE 0.69, R2 0.77">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_06.png" alt="Reference map-scheme of Russia: site class" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">06</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Site class</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">R² 0.77</span>
+                        </div>
+                    </figcaption>
+                </figure>
+
+                <figure class="card rounded-2xl overflow-hidden cursor-zoom-in group m-0"
+                        data-full="assets/img/forest/forest_07.png"
+                        data-caption="Distribution of land categories — national statistics derived from the reference forest map-schemes">
+                    <div class="relative overflow-hidden aspect-[16/10]">
+                        <img src="assets/img/forest/forest_07.png" alt="Distribution of land categories across the Russian Federation derived from the reference forest map-schemes" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105">
+                        <span class="num-badge">07</span>
+                        <span class="zoom-tint"><i data-lucide="zoom-in" class="w-6 h-6"></i></span>
+                    </div>
+                    <figcaption class="p-4">
+                        <div class="text-sm font-bold mb-2">Distribution of land categories</div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tag tag-sm">Reference Map-Scheme</span>
+                            <span class="tag tag-sm">National Statistics</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox (full-size image viewer) -->
+    <div id="lightbox" class="lightbox fixed inset-0 z-[100] hidden items-center justify-center p-6" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button id="lightbox-close" class="btn-outline btn-icon absolute top-5 right-5" aria-label="Close viewer">
+            <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <figure class="max-w-5xl w-full m-0">
+            <img id="lightbox-img" src="" alt="" class="lightbox-img w-full max-h-[78vh] object-contain rounded-xl">
+            <figcaption id="lightbox-caption" class="muted mt-4 text-center text-sm"></figcaption>
+        </figure>
+    </div>
+
+    <!-- Portfolio behavior: icons, animation, theme toggle, galleries -->
+    <script src="js/main.js"></script>
+</body>
+</html>

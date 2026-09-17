@@ -1,0 +1,110 @@
+<html>
+<head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
+
+    html, body, #map {
+      height: 100%;
+    }
+  </style>
+  <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.3/mapbox.css' rel='stylesheet'/>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet'/>
+  <link href='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+  <link rel="stylesheet" href="lib/leaflet.minimaplayerswitcher.css"/>
+	<link rel="stylesheet" href="lib/legend.css"/>
+  <script src="lib/Leaflet.minimaplayerswitcher.js"></script>
+  <script src="lib/Control.MiniMapLayerSwitcher.js"></script>
+<body>
+  <div id="map"></div>
+  <script>
+//create map
+var map = new L.Map("map", {center: [55.80870, 37.412091], zoom: 11, attributionControl:false});
+
+//add mapbox map tiles
+mapbox.addTo(map);
+//add osm map tiles
+var osm = new L.TileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+osm.addTo(map);
+//create marker style
+var marker1 = L.icon({
+    iconUrl: 'image/2.png',
+    iconSize: [20,20]
+	});;
+var marker2 = L.icon({
+    iconUrl: 'image/3.png',
+    iconSize: [20,20]
+	});;
+
+//load locations from json file
+$.getJSON("data/st.geojson", function (data) {
+    // set violationPoints to the dataset, and add the rodent violation GeoJSON layer to the map
+    var locationsLayer = L.geoJson(data, {
+
+    onEachFeature: function (feature, layer) {
+			var info = function(k){
+				var str = k + ": " + feature.properties[k];
+				return str;}
+            layer.bindPopup(Object.keys(feature.properties).map(info).join("<br />"),{maxHeight:200});
+        }, pointToLayer: function (feature, latlng) {
+            if (feature.properties.sea == "Baltic"){
+                var marker = L.marker(latlng,{icon: marker1});
+            } else {
+                var marker = L.marker(latlng,{icon: marker2});
+            };
+	return marker;
+        }
+    });
+  //create cluster group
+  var locations = new L.markerClusterGroup({showCoverageOnHover: false,});
+  //add geojson points to group
+  locations.addLayer(locationsLayer);
+
+  //zoom and center map around points
+  map.fitBounds(locationsLayer.getBounds());
+
+  //add points to map
+  locations.addTo(map);
+
+var baseLayers = {
+		"Mapbox": mapbox,
+		"Openstreetmap": osm };
+var overlays = {
+		"<img src='image/2.png'height=8 >  Точка":locations
+	};	  
+L.control.miniMapLayerSwitcher({
+			"Mapbox": mapbox,
+			'OpenStreetMap': osm
+		},{
+			position: 'bottomleft'
+		}).addTo(map);  
+L.control.layers(null,overlays).addTo(map);	    
+}); 
+// Create Leaflet Control Object for Legend
+		var legend = L.control({position: 'bottomright'});
+
+		// Function that runs when legend is added to map
+		legend.onAdd = function (map) {
+
+			// Create Div Element and Populate it with HTML
+			var div = L.DomUtil.create('div', 'legend');		    
+			div.innerHTML += '<hr>Станции';
+			div.innerHTML += '<br /><img src="image/2.png">Station_1';
+			div.innerHTML += '<br /><img src="image/3.png">Station_2';
+
+			// Return the Legend div containing the HTML content
+			return div;
+		};
+
+		// Add Legend to Map
+		legend.addTo(map);
+
+  </script>
+</body>
+</head>
+</html>

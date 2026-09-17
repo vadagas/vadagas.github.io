@@ -1,0 +1,362 @@
+/* ============================================================
+   Portfolio styles: theme variables + semantic classes.
+   Loaded after the Tailwind CDN so utility precedence is kept.
+   ============================================================ */
+
+/* Light theme (default): "Topographic Sepia" */
+:root,
+html[data-theme="light"] {
+    --bg: #f6f1e7;
+    --ink: #3a2e21;
+    --muted: #7c6b57;
+    --muted-2: #a08c74;
+    --line: #e2d6c2;
+
+    --header-bg: rgba(246, 241, 231, 0.85);
+    --modal-bg: rgba(246, 241, 231, 0.96);
+    --lightbox-bg: rgba(246, 241, 231, 0.92);
+
+    --card-bg: rgba(255, 252, 245, 0.92);
+    --card-border: #e6dac6;
+    --card-hover-border: #c98d5a;
+    --card-shadow: 0 12px 30px -12px rgba(90, 60, 30, 0.25);
+    --card-blur: blur(6px);
+
+    --tag-bg: #f2e8d8;
+    --tag-border: #decba9;
+    --tag-text: #8a5a2b;
+
+    --accent-solid: #a05c2c;
+    --accent-text: #a05c2c;
+
+    --btn-grad: linear-gradient(135deg, #a05c2c, #8a4e24);
+    --btn-ink: #fffcf5;
+    --btn-shadow: 0 8px 24px -12px rgba(160, 92, 44, 0.55);
+
+    --btn2-bg: rgba(255, 252, 245, 0.9);
+    --btn2-text: #6b4a2f;
+    --btn2-border: #d9c6a8;
+    --btn2-hover-bg: #f2e8d8;
+
+    --grad-title: linear-gradient(135deg, #3a2e21 20%, #8a5a2b 60%, #a05c2c 100%);
+    --grad-accent: linear-gradient(135deg, #a05c2c, #3f5d46);
+
+    --badge-bg: rgba(246, 241, 231, 0.85);
+    --badge-text: #8a5a2b;
+
+    /* Contour rings (topographic paper look) */
+    --decor-img:
+        repeating-radial-gradient(circle at 18% 22%, transparent 0 46px, rgba(139, 107, 74, 0.08) 46px 47px),
+        repeating-radial-gradient(circle at 78% 12%, transparent 0 62px, rgba(139, 107, 74, 0.06) 62px 63px),
+        repeating-radial-gradient(circle at 55% 78%, transparent 0 54px, rgba(63, 93, 70, 0.06) 54px 55px),
+        repeating-radial-gradient(circle at 8% 85%, transparent 0 70px, rgba(160, 92, 44, 0.05) 70px 71px);
+    --decor-size: auto;
+
+    /* Constellation palette */
+    --dot-a: 160, 92, 44;
+    --dot-b: 63, 93, 70;
+    --link-rgb: 139, 107, 74;
+    --link-a: 0.16;
+
+    --scroll-track: #f6f1e7;
+    --scroll-thumb: #c9b393;
+    --scroll-thumb-hover: #b09a78;
+
+    --zoom-tint: rgba(58, 46, 33, 0.15);
+    --img-border: #e6dac6;
+}
+
+/* Dark theme */
+html[data-theme="dark"] {
+    --bg: #080b11;
+    --ink: #e2e8f0;
+    --muted: #94a3b8;
+    --muted-2: #64748b;
+    --line: rgba(255, 255, 255, 0.07);
+
+    --header-bg: rgba(8, 11, 17, 0.8);
+    --modal-bg: rgba(8, 11, 17, 0.95);
+    --lightbox-bg: rgba(8, 11, 17, 0.9);
+
+    --card-bg: rgba(15, 23, 42, 0.65);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --card-hover-border: rgba(6, 182, 212, 0.3);
+    --card-shadow: 0 12px 30px -10px rgba(6, 182, 212, 0.15);
+    --card-blur: blur(12px);
+
+    --tag-bg: rgba(6, 182, 212, 0.1);
+    --tag-border: rgba(6, 182, 212, 0.25);
+    --tag-text: #67e8f9;
+
+    --accent-solid: #06b6d4;
+    --accent-text: #67e8f9;
+
+    --btn-grad: linear-gradient(135deg, #06b6d4, #10b981);
+    --btn-ink: #04121a;
+    --btn-shadow: 0 8px 24px -12px rgba(6, 182, 212, 0.6);
+
+    --btn2-bg: rgba(15, 23, 42, 0.65);
+    --btn2-text: #e2e8f0;
+    --btn2-border: rgba(255, 255, 255, 0.2);
+    --btn2-hover-bg: rgba(255, 255, 255, 0.08);
+
+    --grad-title: linear-gradient(135deg, #f8fafc 20%, #94a3b8 60%, #38bdf8 100%);
+    --grad-accent: linear-gradient(135deg, #06b6d4, #10b981);
+
+    --badge-bg: rgba(8, 11, 17, 0.7);
+    --badge-text: #67e8f9;
+
+    /* Ambient glow + coordinate grid */
+    --decor-img:
+        radial-gradient(circle at 50% 0%, rgba(6, 182, 212, 0.12), transparent 45%),
+        radial-gradient(circle at 100% 20%, rgba(16, 185, 129, 0.08), transparent 40%),
+        radial-gradient(circle at 0% 50%, rgba(56, 189, 248, 0.06), transparent 35%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    --decor-size: auto, auto, auto, 40px 40px, 40px 40px;
+
+    /* Constellation palette */
+    --dot-a: 45, 212, 191;
+    --dot-b: 56, 189, 248;
+    --link-rgb: 56, 189, 248;
+    --link-a: 0.10;
+
+    --scroll-track: #080b11;
+    --scroll-thumb: #1e293b;
+    --scroll-thumb-hover: #334155;
+
+    --zoom-tint: rgba(8, 11, 17, 0.4);
+    --img-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ============================================================
+   Base + semantic classes (theme-aware)
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { background-color: var(--bg); scroll-behavior: smooth; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg);
+    color: var(--ink);
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--scroll-track); }
+::-webkit-scrollbar-thumb { background: var(--scroll-thumb); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--scroll-thumb-hover); }
+
+:focus-visible { outline: 2px solid var(--accent-solid); outline-offset: 2px; }
+
+/* Fixed background decor layer */
+.decor {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: var(--decor-img);
+    background-size: var(--decor-size);
+}
+
+.ink { color: var(--ink); }
+.muted { color: var(--muted); }
+.muted-2 { color: var(--muted-2); }
+.accent { color: var(--accent-text); }
+
+.eyebrow {
+    display: inline-block;
+    color: var(--accent-text);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+}
+
+.cat {
+    color: var(--accent-text);
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+}
+
+.title-grad {
+    background: var(--grad-title);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.metric-value {
+    background: var(--grad-accent);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.card {
+    background: var(--card-bg);
+    backdrop-filter: var(--card-blur);
+    border: 1px solid var(--card-border);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+    border-color: var(--card-hover-border);
+    transform: translateY(-2px);
+    box-shadow: var(--card-shadow);
+}
+.card-accent { border-left: 3px solid var(--accent-solid); }
+
+.tag {
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.375rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+.tag-sm { padding: 0.25rem 0.625rem; font-size: 0.68rem; }
+
+.badge-pill {
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.btn-solid,
+.btn-outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-decoration: none;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.btn-solid {
+    background: var(--btn-grad);
+    color: var(--btn-ink);
+    box-shadow: var(--btn-shadow);
+}
+.btn-solid:hover { transform: translateY(-1px); filter: brightness(1.05); }
+.btn-outline {
+    background: var(--btn2-bg);
+    color: var(--btn2-text);
+    border-color: var(--btn2-border);
+}
+.btn-outline:hover { background: var(--btn2-hover-bg); transform: translateY(-1px); }
+.btn-icon { width: 40px; height: 40px; padding: 0; }
+
+.gallery-btn {
+    margin-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background: var(--tag-bg);
+    border: 1px solid var(--tag-border);
+    color: var(--tag-text);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.gallery-btn:hover { border-color: var(--accent-solid); transform: translateY(-1px); }
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--header-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+}
+.brand-sub {
+    color: var(--accent-text);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+}
+.nav-link { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-link:hover { color: var(--accent-text); }
+
+.bullet { position: relative; padding-left: 1.5rem; }
+.bullet::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--accent-text);
+    font-weight: 700;
+}
+
+.num-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--badge-bg);
+    color: var(--badge-text);
+    backdrop-filter: blur(4px);
+}
+
+.zoom-tint {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    transition: background 0.3s;
+    pointer-events: none;
+}
+.zoom-tint svg { opacity: 0; transition: opacity 0.3s; color: var(--accent-text); }
+.group:hover .zoom-tint { background: var(--zoom-tint); }
+.group:hover .zoom-tint svg { opacity: 1; }
+
+.modal {
+    background: var(--modal-bg);
+    backdrop-filter: blur(16px);
+}
+.lightbox {
+    background: var(--lightbox-bg);
+    backdrop-filter: blur(16px);
+}
+.lightbox-img { border: 1px solid var(--img-border); }
+
+.site-footer {
+    border-top: 1px solid var(--line);
+    color: var(--muted-2);
+}
+
+/* Theme toggle icons: show the icon of the theme you switch to */
+html[data-theme="light"] .icon-sun { display: none; }
+html[data-theme="dark"] .icon-moon { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
+    html { scroll-behavior: auto; }
+}
