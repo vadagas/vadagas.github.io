@@ -134,6 +134,13 @@ lucide.createIcons();
         document.getElementById('forest-modal')
     ].filter(Boolean);
 
+    /* Tiles per modal, in display order, for arrow-key stepping in the lightbox */
+    var galleries = modals.map(function (m) {
+        return Array.prototype.slice.call(m.querySelectorAll('[data-full]'));
+    });
+    var activeGallery = null;
+    var activeIndex = -1;
+
     function anyModalOpen() {
         for (var i = 0; i < modals.length; i++) {
             if (!modals[i].classList.contains('hidden')) return true;
@@ -151,23 +158,39 @@ lucide.createIcons();
         syncScroll();
     }
 
+    function showTile(tile) {
+        boxImg.src = tile.getAttribute('data-full');
+        var thumb = tile.querySelector('img');
+        boxImg.alt = thumb ? thumb.alt : '';
+        boxCap.textContent = tile.getAttribute('data-caption') || '';
+    }
+
+    function stepGallery(delta) {
+        if (!activeGallery || !activeGallery.length) return;
+        activeIndex = (activeIndex + delta + activeGallery.length) % activeGallery.length;
+        showTile(activeGallery[activeIndex]);
+    }
+
     /* Lightbox: opens on click of any [data-full] tile (including tiles inside modals) */
     if (box) {
-        document.querySelectorAll('[data-full]').forEach(function (card) {
-            card.addEventListener('click', function () {
-                boxImg.src = card.getAttribute('data-full');
-                var thumb = card.querySelector('img');
-                boxImg.alt = thumb ? thumb.alt : '';
-                boxCap.textContent = card.getAttribute('data-caption') || '';
-                box.classList.remove('hidden');
-                box.classList.add('flex');
-                syncScroll();
+        galleries.forEach(function (gallery) {
+            gallery.forEach(function (tile, i) {
+                tile.addEventListener('click', function () {
+                    activeGallery = gallery;
+                    activeIndex = i;
+                    showTile(tile);
+                    box.classList.remove('hidden');
+                    box.classList.add('flex');
+                    syncScroll();
+                });
             });
         });
         window.closeLightbox = function () {
             box.classList.add('hidden');
             box.classList.remove('flex');
             boxImg.src = '';
+            activeGallery = null;
+            activeIndex = -1;
             syncScroll();
         };
         document.getElementById('lightbox-close').addEventListener('click', window.closeLightbox);
@@ -205,10 +228,15 @@ lucide.createIcons();
         });
     });
 
-    /* Esc closes the topmost layer first (lightbox, then the open modal) */
+    /* Keyboard: arrows step through the open gallery, Esc closes the topmost layer */
     document.addEventListener('keydown', function (e) {
+        if (box && !box.classList.contains('hidden')) {
+            if (e.key === 'ArrowRight') { stepGallery(1); return; }
+            if (e.key === 'ArrowLeft') { stepGallery(-1); return; }
+            if (e.key === 'Escape') { window.closeLightbox(); return; }
+            return;
+        }
         if (e.key !== 'Escape') return;
-        if (box && !box.classList.contains('hidden')) { window.closeLightbox(); return; }
         for (var i = 0; i < modals.length; i++) {
             if (!modals[i].classList.contains('hidden')) { closeModal(modals[i]); return; }
         }
